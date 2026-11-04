@@ -1,67 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modelo Canvas 4:32 | Versión imprimible</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Modelo de negocio Canvas 4:32 organizado en orden del 1 al 9.">
+<title>4:32 | Modelo Canvas 1 al 9</title>
 <style>
 :root{--green:#283b24;--green2:#49613c;--sage:#e8eddc;--cream:#f8f7ee;--paper:#fffef8;--ink:#263123;--muted:#697260;--line:#d8dfcb;--gold:#b8a56b}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-.wrap{max-width:1400px;margin:auto;padding:28px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}
-.brand{font:700 34px Georgia,serif;color:var(--green)}.brand small{display:block;font:10px Arial;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
-h1{font:500 38px Georgia,serif;color:var(--green);margin:8px 0}
-.sub{color:var(--muted);margin:0;max-width:800px}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-block;border:1px solid var(--green);border-radius:8px;background:var(--green);color:white;padding:12px 17px;font-weight:bold;font-size:13px;text-decoration:none;cursor:pointer}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+.wrap{width:min(1180px,calc(100% - 36px));margin:auto;padding:30px 0 42px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:24px}
+.brand{font:700 34px Georgia,serif;color:var(--green);letter-spacing:-2px}
+.brand small{display:block;font:10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+h1{font:500 clamp(30px,4vw,46px)/1.1 Georgia,serif;color:var(--green);margin:12px 0 8px}
+.intro{color:var(--muted);max-width:760px;margin:0}
+.actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:1px solid var(--green);border-radius:8px;background:var(--green);color:white;padding:12px 16px;font-size:13px;font-weight:bold;text-decoration:none;cursor:pointer}
 .btn.alt{background:transparent;color:var(--green)}
-.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:24px}
-.card{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:16px;min-height:200px;text-align:left;color:var(--ink);cursor:pointer}
-.card:nth-child(4),.card:nth-child(7){background:var(--sage)}
-.card h2{font-size:13px;line-height:1.3;text-transform:uppercase;color:var(--green);margin:0 0 11px}
-.n{display:inline-grid;place-items:center;background:var(--green);color:white;width:24px;height:24px;border-radius:50%;font-size:11px;margin-right:6px}
-.card p{font-size:12px;line-height:1.5;color:var(--muted);margin:0}
-.detail{display:none;border-top:1px solid var(--line);padding-top:10px;margin-top:10px;font-size:12px;line-height:1.45}
-.card[aria-expanded=true] .detail{display:block}
-.card .more{display:block;margin-top:12px;color:var(--green);font-size:10px;font-weight:bold;text-transform:uppercase}
-.cost{grid-column:1/3;min-height:130px}.revenue{grid-column:3/6;min-height:130px}
-.note{font-size:11px;color:var(--muted);margin-top:15px;line-height:1.5}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cost,.revenue{grid-column:auto}}
-@media(max-width:560px){.wrap{padding:16px}.top{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.card{min-height:unset}}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:25px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:7px 22px 7px 22px;padding:20px;min-height:210px;cursor:pointer;text-align:left;color:var(--ink);transition:.18s}
+.card:hover,.card[aria-expanded="true"]{border-color:var(--gold);box-shadow:0 10px 26px rgba(40,59,36,.10);transform:translateY(-2px)}
+.card:nth-child(2),.card:nth-child(7){background:var(--sage)}
+.topline{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.num{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--green);color:white;font:17px Georgia,serif;flex:none}
+h2{font-size:15px;text-transform:uppercase;letter-spacing:.35px;color:var(--green);margin:0}
+.card p{font-size:13px;color:var(--muted);margin:0}
+.detail{display:none;border-top:1px solid var(--line);padding-top:12px;margin-top:13px;font-size:12px;line-height:1.55;color:var(--ink)}
+.card[aria-expanded="true"] .detail{display:block}
+.more{display:block;margin-top:13px;color:var(--green);font-size:10px;font-weight:bold;letter-spacing:.8px;text-transform:uppercase}
+.note{margin-top:20px;background:#f1eedf;border-left:3px solid var(--gold);padding:13px 16px;color:#61583f;font-size:12px}
+footer{border-top:1px solid var(--line);margin-top:26px;padding-top:16px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:12px}
+@media(max-width:760px){header{flex-direction:column}.actions{justify-content:flex-start}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.wrap{width:calc(100% - 26px);padding-top:20px}.grid{grid-template-columns:1fr}.card{min-height:unset}}
 @media print{
- @page{size:A4 landscape;margin:9mm}
- body{background:#fff!important}
- .wrap{max-width:none!important;padding:0!important}
- .top{display:block!important;margin-bottom:8mm!important}
- .brand{font-size:23pt}
- h1{font-size:19pt;margin:4px 0}
- .sub{font-size:9pt}
+ @page{size:A4 portrait;margin:12mm}
+ body{background:white}
+ .wrap{width:100%;padding:0}
+ header{display:block;margin-bottom:12px}
  .actions,.more{display:none!important}
- .grid{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important;margin-top:5mm!important}
- .card{display:block!important;min-height:0!important;padding:8px!important;box-shadow:none!important;break-inside:avoid;page-break-inside:avoid}
- .card h2{font-size:8pt!important;margin-bottom:5px!important}
- .card p,.detail{font-size:7pt!important;line-height:1.3!important}
- .detail{display:block!important;margin-top:5px!important;padding-top:5px!important}
- .cost{grid-column:1/3!important}.revenue{grid-column:3/6!important}
- .note{font-size:7pt!important;margin-top:5mm!important}
+ h1{font-size:24pt;margin:5px 0}
+ .intro{font-size:9pt}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+ .card{min-height:0;padding:11px;box-shadow:none!important;transform:none!important;break-inside:avoid;page-break-inside:avoid}
+ .topline{margin-bottom:6px}
+ .num{width:25px;height:25px;font-size:12px}
+ h2{font-size:9pt}
+ .card p,.detail{font-size:8pt;line-height:1.35}
+ .detail{display:block!important;margin-top:7px;padding-top:7px}
+ .note{font-size:8pt;margin-top:10px}
+ footer{font-size:8pt;margin-top:12px}
 }
-</style></head>
-<body><main class="wrap">
-<header class="top"><div><div class="brand">4:32 <small>Un espacio donde serás escuchado</small></div><h1>Modelo de negocio · Business Model Canvas</h1><p class="sub">Espacio para crecer, sonreír y transformar. Sesiones personales con Luis Eduardo Rivas G.</p></div>
-<div class="actions"><button class="btn" onclick="window.print()">Imprimir / Guardar como PDF</button><button class="btn alt" onclick="expandAll()">Mostrar detalles</button><a class="btn alt" href="./index.html">Volver a 4:32</a></div></header>
-<section class="grid">
-<button class="card" aria-expanded="false"><h2><span class="n">8</span>Socios clave</h2><p>Profesionales complementarios, plataformas y aliados.</p><span class="more">Ampliar +</span><div class="detail">Alianzas por desarrollar con profesionales complementarios para remisiones cuando se requiera, plataformas de agenda y comunicación, aliados de difusión y proveedores de espacios.</div></button>
-<button class="card" aria-expanded="false"><h2><span class="n">7</span>Actividades clave</h2><p>Escucha, sesiones, acompañamiento y seguimiento.</p><span class="more">Ampliar +</span><div class="detail">Comprender necesidades, facilitar sesiones personales, integrar las herramientas de acompañamiento y mantener comunicación y seguimiento según lo acordado.</div></button>
-<button class="card" aria-expanded="false"><h2><span class="n">6</span>Recursos clave</h2><p>Experiencia, formación, metodología y materiales.</p><span class="more">Ampliar +</span><div class="detail">Experiencia de Luis Eduardo, formación académica, certificación en acompañamiento holístico, metodología de trabajo y recursos para las sesiones.</div></button>
-<button class="card" aria-expanded="false"><h2><span class="n">2</span>Propuesta de valor</h2><p>Un espacio para crecer, sonreír y transformar; un momento de calma solo para ti.</p><span class="more">Ampliar +</span><div class="detail">Sesiones personales con Luis Eduardo Rivas G. que integran acompañamiento holístico, alineación, coaching y herramientas para la vida.</div></button>
-<button class="card" aria-expanded="false"><h2><span class="n">4</span>Relación con clientes</h2><p>Atención personal, cercana y respetuosa.</p><span class="more">Ampliar +</span><div class="detail">Contacto directo, escucha individual, acuerdos sobre el acompañamiento y seguimiento según las necesidades y decisiones de cada persona.</div></button>
-<button class="card" aria-expanded="false"><h2><span class="n">3</span>Canales</h2><p>WhatsApp, correo y recomendaciones.</p><span class="more">Ampliar +</span><div class="detail">Contacto directo por WhatsApp al 318 330 9384 y correo electrónico lerivasgarzon@gmail.com. También pueden utilizarse recomendaciones personales y canales digitales.</div></button>
-<button class="card" aria-expanded="false"><h2><span class="n">1</span>Segmentos de clientes</h2><p>Adultos jóvenes y adultos mayores interesados en su crecimiento personal.</p><span class="more">Ampliar +</span><div class="detail">Personas que buscan un espacio de calma, escucha y acompañamiento para explorar cambios, decisiones y herramientas para su vida.</div></button>
-<button class="card cost" aria-expanded="false"><h2><span class="n">9</span>Estructura de costos</h2><p>Espacios, recursos, comunicación, plataformas y operación.</p><span class="more">Ampliar +</span><div class="detail">Los costos específicos y su cuantía están pendientes de identificación y validación por parte del emprendimiento.</div></button>
-<button class="card revenue" aria-expanded="false"><h2><span class="n">5</span>Fuentes de ingresos</h2><p>Sesiones personales y posibles paquetes de acompañamiento.</p><span class="more">Ampliar +</span><div class="detail">La oferta comercial, los precios, duración, paquetes y capacidad de atención deben ser definidos por el fundador antes de establecer proyecciones financieras.</div></button>
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+  <div>
+    <div class="brand">4:32 <small>Espacio para crecer, sonreír y transformar</small></div>
+    <h1>Modelo de negocio Canvas</h1>
+    <p class="intro">Los nueve componentes del modelo de negocio organizados en secuencia del 1 al 9 para facilitar su lectura, explicación y presentación.</p>
+  </div>
+  <div class="actions">
+    <button class="btn alt" type="button" onclick="toggleAll()">Ampliar los nueve bloques</button>
+    <button class="btn" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button>
+    <a class="btn alt" href="./index.html">Volver a la página 4:32</a>
+  </div>
+</header>
+
+<section class="grid" aria-label="Nueve bloques del modelo Canvas en orden">
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">1</span><h2>Segmentos de clientes</h2></div>
+ <p>Adultos jóvenes y adultos mayores interesados en su crecimiento personal.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Personas que buscan un espacio de calma, escucha y acompañamiento para explorar cambios, decisiones y herramientas para su vida. Se consideran dos grupos principales: adultos jóvenes y adultos mayores.</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">2</span><h2>Propuesta de valor</h2></div>
+ <p>Un espacio para crecer, sonreír y transformar; un momento de calma solo para ti.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Sesiones personales con Luis Eduardo Rivas G. que integran acompañamiento holístico, alineación, coaching y herramientas para la vida. La promesa de marca es: «No damos respuestas. Creamos el espacio para encontrarlas».</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">3</span><h2>Canales</h2></div>
+ <p>WhatsApp, correo electrónico y recomendaciones.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Contacto directo por WhatsApp al 318 330 9384 y correo electrónico lerivasgarzon@gmail.com. También pueden utilizarse recomendaciones personales y canales digitales para dar a conocer los servicios.</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">4</span><h2>Relación con clientes</h2></div>
+ <p>Atención personal, cercana y respetuosa.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Contacto directo, escucha individual, acuerdos sobre el acompañamiento y seguimiento según las necesidades y decisiones de cada persona. La relación debe basarse en el respeto, la confianza y la claridad sobre el alcance del servicio.</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">5</span><h2>Fuentes de ingresos</h2></div>
+ <p>Sesiones personales y posibles paquetes de acompañamiento.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">La oferta comercial puede contemplar sesiones individuales y paquetes de acompañamiento. Los precios, duración, número de sesiones y condiciones comerciales deben ser definidos por el fundador antes de establecer proyecciones financieras.</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">6</span><h2>Recursos clave</h2></div>
+ <p>Experiencia, formación, metodología y materiales.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Experiencia de Luis Eduardo, formación académica, dos maestrías, certificación en acompañamiento holístico, metodología 4:32 y recursos necesarios para realizar las sesiones personales.</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">7</span><h2>Actividades clave</h2></div>
+ <p>Escucha, sesiones, acompañamiento y seguimiento.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Comprender necesidades, facilitar sesiones personales, integrar las herramientas de acompañamiento, acordar pasos de acción y mantener comunicación y seguimiento según lo convenido con cada cliente.</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">8</span><h2>Socios clave</h2></div>
+ <p>Profesionales complementarios, plataformas y aliados.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Alianzas por desarrollar con profesionales complementarios para remisiones cuando se requiera, plataformas de agenda y comunicación, aliados de difusión y proveedores de espacios. Estas alianzas están pendientes de validación.</div>
+</button>
+<button class="card" aria-expanded="false" type="button">
+ <div class="topline"><span class="num">9</span><h2>Estructura de costos</h2></div>
+ <p>Espacios, recursos, comunicación, plataformas y operación.</p>
+ <span class="more">Ampliar información +</span>
+ <div class="detail">Se deben identificar y cuantificar los costos de espacio físico o virtual, plataformas digitales, comunicación y marketing, materiales, formación y gastos administrativos. Los valores aún están pendientes de definición.</div>
+</button>
 </section>
-<p class="note">Nota: los precios, duración de las sesiones, costos y capacidad de atención no se especifican y quedan pendientes de definición. En la impresión se incluyen los nueve bloques y sus detalles, sin el resto de la página web.</p>
+
+<div class="note"><strong>Aspectos pendientes de validación:</strong> precios, duración de las sesiones, capacidad de atención, costos operativos y punto de equilibrio. No se asignan valores porque todavía no han sido definidos.</div>
+<footer><span>4:32 · Modelo de negocio Canvas</span><span>Luis Eduardo Rivas Garzón</span></footer>
 </main>
 <script>
-document.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>{const o=c.getAttribute("aria-expanded")==="true";c.setAttribute("aria-expanded",String(!o));c.querySelector(".more").textContent=o?"Ampliar +":"Cerrar −"}));
-function expandAll(){const cards=[...document.querySelectorAll(".card")];const open=cards.some(c=>c.getAttribute("aria-expanded")!=="true");cards.forEach(c=>{c.setAttribute("aria-expanded",String(open));c.querySelector(".more").textContent=open?"Cerrar −":"Ampliar +"});}
-</script></body></html>
+document.querySelectorAll(".card").forEach(card=>card.addEventListener("click",()=>{
+ const opened=card.getAttribute("aria-expanded")==="true";
+ card.setAttribute("aria-expanded",String(!opened));
+ card.querySelector(".more").textContent=opened?"Ampliar información +":"Cerrar información −";
+}));
+function toggleAll(){
+ const cards=[...document.querySelectorAll(".card")];
+ const open=cards.some(card=>card.getAttribute("aria-expanded")!=="true");
+ cards.forEach(card=>{
+  card.setAttribute("aria-expanded",String(open));
+  card.querySelector(".more").textContent=open?"Cerrar información −":"Ampliar información +";
+ });
+}
+</script>
+</body>
+</html>
